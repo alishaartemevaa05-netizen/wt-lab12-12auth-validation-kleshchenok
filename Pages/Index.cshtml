@@ -1,0 +1,48 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Главная";
+}
+
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold">🚗 Система управления прокатом автомобилей</h1>
+        <p class="lead text-muted">Веб-приложение на ASP.NET Core Razor Pages</p>
+        <a asp-page="/Cars/Index" class="btn btn-primary btn-lg mt-3">Перейти к автомобилям</a>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card text-center shadow-sm rounded-4 h-100">
+                <div class="card-body">
+                    <h2 class="display-6 fw-bold text-primary">@Model.TotalCars</h2>
+                    <p class="text-muted mb-0">Всего автомобилей</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card text-center shadow-sm rounded-4 h-100">
+                <div class="card-body">
+                    <h2 class="display-6 fw-bold text-success">@Model.AvailableCars</h2>
+                    <p class="text-muted mb-0">Доступны</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card text-center shadow-sm rounded-4 h-100">
+                <div class="card-body">
+                    <h2 class="display-6 fw-bold text-info">@Model.TotalCustomers</h2>
+                    <p class="text-muted mb-0">Клиентов</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card text-center shadow-sm rounded-4 h-100">
+                <div class="card-body">
+                    <h2 class="display-6 fw-bold text-warning">@Model.ActiveRentals</h2>
+                    <p class="text-muted mb-0">Активных аренд</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+@page
+@model wt_lab12_12auth_validation_kleshchenok.Pages.Cars.DetailsModel
+@{
+    ViewData["Title"] = Model.Car?.FullName ?? "Автомобиль";
+}
+
+<div class="container py-4">
+    <div class="card shadow-sm rounded-4">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-start mb-3 flex-wrap gap-2">
+                <h1 class="mb-0">@Model.Car!.Brand @Model.Car.Model</h1>
+                @if (Model.Car.IsAvailable)
+                {
+                    <span class="badge bg-success fs-6">Доступен</span>
+                }
+                else
+                {
+                    <span class="badge bg-danger fs-6">В аренде</span>
+                }
+            </div>
+
+            <dl class="row">
+                <dt class="col-sm-3">ID</dt><dd class="col-sm-9">@Model.Car.Id</dd>
+                <dt class="col-sm-3">Марка</dt><dd class="col-sm-9">@Model.Car.Brand</dd>
+                <dt class="col-sm-3">Модель</dt><dd class="col-sm-9">@Model.Car.Model</dd>
+                <dt class="col-sm-3">Год выпуска</dt><dd class="col-sm-9">@Model.Car.Year</dd>
+                <dt class="col-sm-3">Категория</dt><dd class="col-sm-9">@Model.Car.Category.GetDisplayName()</dd>
+                <dt class="col-sm-3">Коробка</dt><dd class="col-sm-9">@Model.Car.Transmission.GetDisplayName()</dd>
+                <dt class="col-sm-3">Топливо</dt><dd class="col-sm-9">@Model.Car.FuelType.GetDisplayName()</dd>
+                <dt class="col-sm-3">Мест</dt><dd class="col-sm-9">@Model.Car.Seats</dd>
+                <dt class="col-sm-3">Цена за сутки</dt><dd class="col-sm-9">@Model.Car.DailyPrice.ToString("0.##") руб.</dd>
+                @if (!string.IsNullOrEmpty(Model.Car.Description))
+                {
+                    <dt class="col-sm-3">Описание</dt><dd class="col-sm-9">@Model.Car.Description</dd>
+                }
+            </dl>
+
+            <div class="mt-4 d-flex flex-wrap gap-2">
+                <a asp-page="./Index" class="btn btn-secondary">← Назад к списку</a>
+                <a asp-page="./Edit" asp-route-id="@Model.Car.Id" class="btn btn-warning">✏️ Редактировать</a>
+                <a asp-page="./Delete" asp-route-id="@Model.Car.Id" class="btn btn-danger">🗑️ Удалить</a>
+            </div>
+        </div>
+    </div>
+</div>

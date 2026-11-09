@@ -1,0 +1,15 @@
+@page
+@model wt_lab12_12auth_validation_kleshchenok.Pages.ProfileModel
+@{
+    ViewData["Title"] = "Личный кабинет";
+}
+
+<h1 class="h3 mb-3">👤 Личный кабинет</h1>
+
+<p>
+    Пользователь: <strong>@Model.UserLogin</strong>
+</p>
+
+<form method="post">
+    <button type="submit" class="btn btn-outline-danger">Выйти</button>
+</form>

@@ -1,0 +1,57 @@
+@page
+@model wt_lab12_12auth_validation_kleshchenok.Pages.Rentals.IndexModel
+@{
+    ViewData["Title"] = "Аренды";
+}
+
+<div class="container py-4">
+    <h1 class="mb-4">📋 Аренды</h1>
+
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead class="table-light">
+                <tr>
+                    <th>ID</th>
+                    <th>Автомобиль</th>
+                    <th>Клиент</th>
+                    <th>Начало</th>
+                    <th>Окончание</th>
+                    <th>Стоимость</th>
+                    <th>Статус</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var r in Model.Rentals)
+                {
+                    <tr>
+                        <td>@r.Id</td>
+                        <td>@r.CarName</td>
+                        <td>@r.CustomerName</td>
+                        <td>@r.StartDate.ToString("dd.MM.yyyy")</td>
+                        <td>@r.EndDate.ToString("dd.MM.yyyy")</td>
+                        <td>@r.TotalPrice.ToString("0.##") руб.</td>
+                        <td>
+                            @if (r.Status == wt_lab12_12auth_validation_kleshchenok.Models.RentalStatus.Active)
+                            {
+                                <span class="badge bg-success">Активна</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-secondary">Завершена</span>
+                            }
+                        </td>
+                        <td>
+                            @if (r.Status == wt_lab12_12auth_validation_kleshchenok.Models.RentalStatus.Active)
+                            {
+                                <form method="post" asp-page-handler="Return" asp-route-id="@r.Id" class="d-inline">
+                                    <button type="submit" class="btn btn-sm btn-outline-primary">Принять авто</button>
+                                </form>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

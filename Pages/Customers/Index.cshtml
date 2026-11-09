@@ -1,0 +1,30 @@
+@page
+@model wt_lab12_12auth_validation_kleshchenok.Pages.Customers.IndexModel
+@{
+    ViewData["Title"] = "Клиенты";
+}
+
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>👥 Клиенты</h1>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead class="table-light">
+                <tr>
+                    <th>ID</th><th>ФИО</th><th>Телефон</th><th>Email</th><th>ВУ</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var c in Model.Customers)
+                {
+                    <tr>
+                        <td>@c.Id</td><td>@c.FullName</td><td>@c.Phone</td>
+                        <td>@(c.Email ?? "—")</td><td>@c.DriverLicense</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+@page
+@model wt_lab12_12auth_validation_kleshchenok.Pages.Cars.EditModel
+@{
+    ViewData["Title"] = "Редактирование";
+}
+
+<div class="container py-4">
+    <div class="card shadow-sm rounded-4">
+        <div class="card-body">
+            <h2 class="mb-4">✏️ Редактирование: @Model.Car.Brand @Model.Car.Model</h2>
+
+            <form method="post">
+                <input type="hidden" asp-for="Car.Id" />
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="row g-3">
+                    <div class="col-12 col-md-6">
+                        <label asp-for="Car.Brand" class="form-label"></label>
+                        <input asp-for="Car.Brand" class="form-control" />
+                        <span asp-validation-for="Car.Brand" class="text-danger"></span>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label asp-for="Car.Model" class="form-label"></label>
+                        <input asp-for="Car.Model" class="form-control" />
+                        <span asp-validation-for="Car.Model" class="text-danger"></span>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <label asp-for="Car.Year" class="form-label"></label>
+                        <input asp-for="Car.Year" class="form-control" />
+                        <span asp-validation-for="Car.Year" class="text-danger"></span>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <label asp-for="Car.Seats" class="form-label"></label>
+                        <input asp-for="Car.Seats" class="form-control" />
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <label asp-for="Car.DailyPrice" class="form-label"></label>
+                        <input asp-for="Car.DailyPrice" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary">💾 Сохранить</button>
+                    <a asp-page="./Index" class="btn btn-secondary">← Назад</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

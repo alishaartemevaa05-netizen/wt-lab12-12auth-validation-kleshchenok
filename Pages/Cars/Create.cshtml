@@ -1,0 +1,80 @@
+@page
+@model wt_lab12_12auth_validation_kleshchenok.Pages.Cars.CreateModel
+@{
+    ViewData["Title"] = "Добавление автомобиля";
+}
+
+<div class="container py-4">
+    <div class="card shadow-sm rounded-4">
+        <div class="card-body">
+            <h2 class="mb-4">➕ Добавление автомобиля</h2>
+
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="row g-3">
+                    <div class="col-12 col-md-6">
+                        <label asp-for="Car.Brand" class="form-label"></label>
+                        <input asp-for="Car.Brand" class="form-control" />
+                        <span asp-validation-for="Car.Brand" class="text-danger"></span>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label asp-for="Car.Model" class="form-label"></label>
+                        <input asp-for="Car.Model" class="form-control" />
+                        <span asp-validation-for="Car.Model" class="text-danger"></span>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <label asp-for="Car.Year" class="form-label"></label>
+                        <input asp-for="Car.Year" class="form-control" />
+                        <span asp-validation-for="Car.Year" class="text-danger"></span>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <label asp-for="Car.Category" class="form-label"></label>
+                        <select asp-for="Car.Category" class="form-select"
+                                asp-items="Html.GetEnumSelectList<wt_lab12_12auth_validation_kleshchenok.Models.CarCategory>()"></select>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <label asp-for="Car.Transmission" class="form-label"></label>
+                        <select asp-for="Car.Transmission" class="form-select"
+                                asp-items="Html.GetEnumSelectList<wt_lab12_12auth_validation_kleshchenok.Models.Transmission>()"></select>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <label asp-for="Car.FuelType" class="form-label"></label>
+                        <select asp-for="Car.FuelType" class="form-select"
+                                asp-items="Html.GetEnumSelectList<wt_lab12_12auth_validation_kleshchenok.Models.FuelType>()"></select>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <label asp-for="Car.Seats" class="form-label"></label>
+                        <input asp-for="Car.Seats" class="form-control" />
+                        <span asp-validation-for="Car.Seats" class="text-danger"></span>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <label asp-for="Car.DailyPrice" class="form-label"></label>
+                        <input asp-for="Car.DailyPrice" class="form-control" />
+                        <span asp-validation-for="Car.DailyPrice" class="text-danger"></span>
+                    </div>
+                    <div class="col-12">
+                        <label asp-for="Car.Description" class="form-label"></label>
+                        <textarea asp-for="Car.Description" class="form-control" rows="3"></textarea>
+                        <span asp-validation-for="Car.Description" class="text-danger"></span>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-check">
+                            <input asp-for="Car.IsAvailable" class="form-check-input" />
+                            <label asp-for="Car.IsAvailable" class="form-check-label"></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary">💾 Сохранить</button>
+                    <a asp-page="./Index" class="btn btn-secondary">← Назад</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

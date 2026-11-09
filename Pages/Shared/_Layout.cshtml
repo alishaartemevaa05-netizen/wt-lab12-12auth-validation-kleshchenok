@@ -1,0 +1,64 @@
+﻿@using Microsoft.AspNetCore.Http
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Прокат авто</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" asp-page="/Index">🚗 Прокат авто</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarMain">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarMain">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item"><a class="nav-link" asp-page="/Index">Главная</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-page="/Cars/Index">Автомобили</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-page="/Customers/Index">Клиенты</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-page="/Rentals/Index">Аренды</a></li>
+
+                        @if (Context.Session.GetString("UserLogin") == null)
+                        {
+                            <li class="nav-item"><a class="nav-link" asp-page="/Login">Войти</a></li>
+                        }
+                        else
+                        {
+                            <li class="nav-item"><a class="nav-link" asp-page="/Profile">Личный кабинет (@Context.Session.GetString("UserLogin"))</a></li>
+                        }
+                    </ul>
+                    <a asp-page="/Cars/Create" class="btn btn-primary btn-sm">➕ Добавить авто</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @if (TempData["Message"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+                    @TempData["Message"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            }
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted mt-4">
+        <div class="container py-3">&copy; 2026 — WT-12 Razor Pages. Прокат автомобилей.</div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

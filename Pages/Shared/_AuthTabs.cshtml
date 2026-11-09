@@ -1,0 +1,12 @@
+@* Переключатель «Вход / Регистрация» для страниц Login и Register *@
+@{
+    var active = ViewData["Active"] as string ?? "login";
+}
+<ul class="nav nav-pills nav-fill bg-light rounded-pill p-1 mb-4">
+    <li class="nav-item">
+        <a class="nav-link rounded-pill @(active == "login" ? "active" : "")" asp-page="/Login">Вход</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link rounded-pill @(active == "register" ? "active" : "")" asp-page="/Register">Регистрация</a>
+    </li>
+</ul>
